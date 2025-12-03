@@ -1,14 +1,169 @@
 # FLOOD-XML (Flood LOss and Observed Damage using eXplainable Machine Learning)
 ### A Multi-Model Ensemble Dataset of Global Flood Damages Since the 1980s Based on Explainable Machine Learning Frameworks ###
 
-<img src="auxfiles/flood-xml-logo.jpg" alt="sdasds" width="90%" style="display: block; margin: auto;" />
+<img src="auxfiles/flood-xml-logo.jpg" alt="FLOOD-XML-LOGO" width="90%" style="display: block; margin: auto;" />
 
-## User Manual (Documentation Guide) ##
-### Usage Notes and Limitations
-### Code Availability
-### Data Availability
-### Acknowledgments
-### Citation
-### License
-### Disclaimer:
-You are running the scripts/functions which means you will not blame the author(s)/developer(s) if they break your stuff. The scripts/functions are provided AS IS without warranty of any kind. Author(s) disclaim all implied warranties, including, without limitation, any implied warranties of merchantability or of fitness for a particular purpose. In no event shall the author(s) be held liable for any damages whatsoever (including, without limitation, any sort of damages or loss) arising out of the use of or inability to use the scripts or documentation. Author(s) retain the right to alter this disclaimer at any time. The contents contained in this repository or within the articles are not the opinions of the funding agencies, affiliated university, or the U.S. Government but reflect the authors' opinions.
+---
+
+## User Manual (Documentation Guide)
+
+### Overview
+
+FLOOD-XML is an open-source framework for generating global, event-level flood damage estimates using a suite of explainable machine learning (XML) models. The workflow harmonizes multi-decade archives (DFO, EM-DAT) with event attributes including duration, affected area, number of deaths, event location, country-level GDP, and main reported cause. Using these features, FLOOD-XML trains a six-model ML ensemble (LM, RF, XGB, SVR, BRNN, k-NN) to generate consistent flood loss estimates (USD) for thousands of historical events.
+
+---
+
+## Getting Started
+
+### Clone the repository
+
+    git clone https://github.com/nassernajibi/FLOOD-XML.git
+    cd FLOOD-XML
+
+### Install required R packages
+
+    install.packages(c(
+      "readxl","reshape2","hydroGOF","psych","caret",
+      "countrycode","lubridate","xgboost","plyr",
+      "e1071","kernlab","brnn","stringr","ncdf4"
+    ))
+
+### Run a demo workflow
+
+    setwd("path/to/FLOOD-XML")
+    source("demo/demo_floodxml_workflow.R")
+
+---
+
+## Workflow Description
+
+### 1. Preprocessing (functions/, programs/)
+Processes EM-DAT and DFO archives, harmonizes features, computes durations, merges GDP, handles missing data, and generates ML-ready training tables.
+
+### 2. Machine Learning Model Training
+Trains six ML models (LM, RF, XGB, SVR, BRNN, k-NN) on EM-DAT, DFO, or combined datasets. Outputs predicted economic losses (USD) per event.
+
+### 3. Explainability Analysis
+Variable importance, partial dependence diagnostics, model comparison, and optional SHAP-style reasoning.
+
+### 4. Product Generation (product/)
+Generates FLOOD-XML CSV files and NetCDF files including:
+- ML damage estimates  
+- time_start and time_end  
+- deaths, area, duration, lat, lon, GDP  
+- country and MainCause stored as metadata  
+- EM-DAT dismagvalue stored when available  
+
+### 5. Tutorials and Examples (demo/, tutorials/)
+Step-by-step workflows and reproducible analyses.
+
+---
+
+## Usage Notes and Limitations
+
+- FLOOD-XML provides **event-level** loss estimates, not building-level or grid-level losses.  
+- Input archives include uncertainties; predictions inherit these limitations.  
+- ML outputs are statistical estimates, not authoritative valuations.  
+- Not intended for operational forecasting or insurance applications.  
+- Users must update file paths inside scripts when running workflows.
+
+---
+
+## Code Availability
+
+### functions/
+Reusable R functions for preprocessing, feature engineering, ML model training, ensemble prediction, and NetCDF generation.
+
+### programs/
+Full end-to-end workflow scripts (training, prediction, evaluation).
+
+### product/
+Scripts for producing final FLOOD-XML datasets (CSV + NetCDF).
+
+### demo/ and tutorials/
+Reproducible examples and user-guided learning scripts.
+
+---
+
+## Data Availability
+
+Raw input datasets are NOT included due to licensing. Users must obtain:
+- EM-DAT (CRED)  
+- Dartmouth Flood Observatory (DFO)  
+- World Bank GDP  
+
+A public DOI for FLOOD-XML outputs will be added upon dataset release.
+
+---
+
+## Acknowledgments
+
+Developed by:
+
+Nasser Najibi  
+Assistant Professor  
+Agricultural & Biological Engineering  
+University of Florida  
+Director, Climate Resilience Lab  
+
+Thanks to EM-DAT, DFO, and World Bank contributors.
+
+---
+
+## Citation
+
+Please cite FLOOD-XML as:
+
+Najibi, N. (20XX). FLOOD-XML: Flood LOss and Observed Damage using eXplainable Machine Learning. GitHub Repository. https://github.com/nassernajibi/FLOOD-XML
+
+BibTeX:
+
+    @misc{Najibi_FLOODXML,
+      author       = {Najibi, Nasser},
+      title        = {FLOOD-XML: Flood LOss and Observed Damage using eXplainable Machine Learning},
+      year         = {20XX},
+      howpublished = {\url{https://github.com/nassernajibi/FLOOD-XML}},
+      note         = {Version X.X}
+    }
+
+---
+
+## License
+
+This project is released under the GNU GPL-3.0 License.  
+See the LICENSE file for full terms.
+
+---
+
+## Repository Structure
+
+    FLOOD-XML/
+    ├─ auxfiles/
+    │  └─ flood-xml-logo.jpg
+    │
+    ├─ demo/
+    │  └─ demo_*.R
+    │
+    ├─ functions/
+    │  └─ *.R
+    │
+    ├─ inputs/
+    │  └─ (user-provided datasets)
+    │
+    ├─ product/
+    │  └─ *.R   # CSV → NetCDF, metadata embedding
+    │
+    ├─ programs/
+    │  └─ workflow_*.R
+    │
+    ├─ tutorials/
+    │  └─ *.R / *.Rmd
+    │
+    ├─ LICENSE
+    └─ README.md
+
+---
+
+## Disclaimer
+
+You are running the scripts/functions, which means you will not blame the author(s) if they break your stuff. The scripts/functions are provided AS IS without warranty of any kind. Author(s) disclaim all implied warranties, including merchantability or fitness for a particular purpose. Author(s) shall not be liable for any damages, losses, or consequences resulting from the use or inability to use this code. The contents do not represent the views of funding agencies, affiliated universities, or the U.S. Government.
