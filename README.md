@@ -38,13 +38,13 @@ FLOOD-XML is an open-source framework for generating global, event-level flood d
 ## Workflow Description
 
 ### 1. Preprocessing (functions/, programs/)
-Processes EM-DAT and DFO archives, harmonizes features, computes durations, merges GDP, handles missing data, and generates ML-ready training tables.
+Processes EM-DAT and DFO archives, harmonizes features, computes durations, merges GDP, and generates ML-ready training arrays.
 
-### 2. Machine Learning Model Training
-Trains six ML models (LM, RF, XGB, SVR, BRNN, k-NN) on EM-DAT, DFO, or combined datasets. Outputs predicted economic losses (USD) per event.
+### 2. ML Model Training
+Trains six ML models (LM, RF, XGB, SVR, BRNN, k-NN) on EM-DAT (or DFO'15 and/or combined datasets). Outputs predicted economic losses (USD) per event for DFO'21.
 
 ### 3. Explainability Analysis
-Variable importance, partial dependence diagnostics, model comparison, and optional SHAP-style reasoning.
+SHAP, LIME, variable importance, partial dependence diagnostics, model comparison, and optional ANOVA reasoning.
 
 ### 4. Product Generation (product/)
 Generates FLOOD-XML CSV files and NetCDF files including:
@@ -64,7 +64,7 @@ Step-by-step workflows and reproducible analyses.
 - FLOOD-XML provides **event-level** loss estimates, not building-level or grid-level losses.  
 - Input archives include uncertainties; predictions inherit these limitations.  
 - ML outputs are statistical estimates, not authoritative valuations.  
-- Not intended for operational forecasting or insurance applications.  
+- Not intended for real-time operational forecasting or applications.  
 - Users must update file paths inside scripts when running workflows.
 
 ---
