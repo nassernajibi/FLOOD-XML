@@ -9,7 +9,7 @@
 
 ### Overview
 
-FLOOD-XML is an open-source framework for generating global, event-level flood damage estimates using a suite of explainable machine learning (XML) models. The workflow harmonizes multi-decade archives (DFO, EM-DAT) with event attributes including duration, affected area, number of deaths, event location, country-level GDP, and main reported cause. Using these features, FLOOD-XML trains a six-model ML ensemble (LM, RF, XGB, SVR, BRNN, k-NN) to generate consistent flood loss estimates (USD) for thousands of historical events.
+FLOOD-XML is an open-source dataset and modeling framework designed in accordance with FAIR (Findable, Accessible, Interoperable, Reusable) and CARE (Collective Benefit, Authority to Control, Responsibility, Ethics) principles. It generates global, event-level flood damage estimates using explainable machine learning (XML) models. The workflow harmonizes multi-decade flood archives (DFO, EM-DAT) with event attributes such as duration, affected area, deaths, centroid location, GDP, and main reported cause. Using these features, FLOOD-XML trains a six-model ensemble (MLR/LM, RF, XGB, SVR, BRNN, k-NN) to produce consistent economic loss estimates (USD) for thousands of events from 1985 to the present.
 
 ---
 
