@@ -1,14 +1,155 @@
 # FLOOD-XML (Flood LOss and Observed Damage using eXplainable Machine Learning)
 ### A Multi-Model Ensemble Dataset of Global Flood Damages Since the 1980s Based on Explainable Machine Learning Frameworks ###
 
-<img src="auxfiles/flood-xml-logo.jpg" alt="sdasds" width="90%" style="display: block; margin: auto;" />
+<img src="auxfiles/flood-xml-logo.jpg" alt="FLOOD-XML-LOGO" width="90%" style="display: block; margin: auto;" />
 
-## User Manual (Documentation Guide) ##
-### Usage Notes and Limitations
-### Code Availability
-### Data Availability
-### Acknowledgments
-### Citation
-### License
-### Disclaimer:
-You are running the scripts/functions which means you will not blame the author(s)/developer(s) if they break your stuff. The scripts/functions are provided AS IS without warranty of any kind. Author(s) disclaim all implied warranties, including, without limitation, any implied warranties of merchantability or of fitness for a particular purpose. In no event shall the author(s) be held liable for any damages whatsoever (including, without limitation, any sort of damages or loss) arising out of the use of or inability to use the scripts or documentation. Author(s) retain the right to alter this disclaimer at any time. The contents contained in this repository or within the articles are not the opinions of the funding agencies, affiliated university, or the U.S. Government but reflect the authors' opinions.
+---
+
+## User Manual (Documentation Guide)
+
+### Overview
+
+FLOOD-XML is an open-source dataset and modeling framework designed in accordance with FAIR (Findable, Accessible, Interoperable, Reusable) and CARE (Collective Benefit, Authority to Control, Responsibility, Ethics) principles. It generates global, event-level flood damage estimates using explainable machine learning (XML) models. The workflow harmonizes multi-decade flood archives (DFO, EM-DAT) with event attributes, including duration, affected area, deaths, centroid location, GDP, and the main reported cause. Using these features, FLOOD-XML trains a six-model ensemble (MLR/LM, RF, XGB, SVR, BRNN, k-NN) to produce consistent economic loss estimates (USD) for thousands of events from 1985 to the present.
+
+---
+
+## Getting Started
+
+### Clone the repository
+
+    git clone https://github.com/nassernajibi/FLOOD-XML.git
+    cd FLOOD-XML
+
+### Install required R packages
+
+    install.packages(c(
+      "readxl","reshape2","hydroGOF","psych","caret",
+      "countrycode","lubridate","xgboost","plyr",
+      "e1071","kernlab","brnn","stringr","ncdf4"
+    ))
+
+### Run a demo workflow
+
+    setwd("path/to/FLOOD-XML")
+    source("demo/demo_floodxml_workflow.R")
+
+---
+
+## Workflow Description
+
+### 1. Preprocessing (auxfiles/)
+Processes EM-DAT and DFO archives, harmonizes features, computes durations, merges GDP, and generates ML-ready training arrays.
+
+### 2. ML Model Training (programs/, functions/)
+Trains six ML models (LM, RF, XGB, SVR, BRNN, k-NN) on EM-DAT data (or DFO'15 and/or combined datasets) based on the flood damage scaling functions. Outputs predicted economic losses (USD) per event for DFO'21 (and EM-DAT).
+
+### 3. Explainability Analysis (programs/)
+SHAP, LIME, variable importance, partial dependence diagnostics, model comparison metrics, and optional ANOVA reasoning.
+
+### 4. Product Generation (product/)
+Generates FLOOD-XML CSV files and NetCDF files including:
+- ML damage estimates  
+- starting and ending event dates
+- deaths, area, duration, lat, lon, GDP  
+- country and MainCause stored as metadata  
+- EM-DAT dismagvalue stored when available  
+
+### 5. Tutorials and Examples (demo/)
+Step-by-step workflows and reproducible analyses.
+
+---
+
+## Usage Notes and Limitations
+
+- FLOOD-XML provides **event-level** loss estimates, not building-level or grid-level losses.  
+- Input archives include uncertainties; predictions inherit these limitations.  
+- ML outputs are statistical (data-driven) estimates, not authoritative valuations.  
+- Not intended for real-time operational forecasting or applications.  
+- Users must update file paths inside scripts when running workflows.
+
+---
+
+## Code Availability
+
+### programs/
+Full end-to-end workflow scripts (training, prediction, evaluation).
+Scripts for producing final FLOOD-XML datasets (CSV + NetCDF).
+
+### functions/
+Reusable R functions for preprocessing, feature engineering, ML model training, ensemble prediction, and NetCDF generation.
+
+### demo/
+Reproducible examples and user-guided learning scripts.
+
+---
+
+## Data Availability
+
+This repository includes the processed FLOOD-XML outputs (CSV and NetCDF).
+Users are responsible for complying with the licensing and use restrictions of the underlying raw data sources (EM-DAT, DFO, World Bank GDP).
+A public DOI for the finalized FLOOD-XML dataset will be assigned and added here upon formal release.
+
+---
+
+## Acknowledgments
+
+XXXXX
+
+Thanks to EM-DAT, DFO, and World Bank contributors.
+
+---
+
+## Citation
+
+Please cite FLOOD-XML as:
+
+XXXX. FLOOD-XML: Flood LOss and Observed Damage using eXplainable Machine Learning. GitHub Repository. https://github.com/nassernajibi/FLOOD-XML
+
+BibTeX:
+
+    @misc{XXX,
+      author       = {XXXX},
+      title        = {FLOOD-XML: Flood LOss and Observed Damage using eXplainable Machine Learning},
+      year         = {20XX},
+      howpublished = {\url{https://github.com/nassernajibi/FLOOD-XML}},
+      note         = {Version X.X}
+    }
+
+---
+
+## License
+
+This project is released under the GNU GPL-3.0 License.  
+See the LICENSE file for full terms.
+
+---
+
+## Repository Structure
+
+    FLOOD-XML/
+    ├─ auxfiles/
+    │  └─ flood-xml-logo.jpg
+    │
+    ├─ demo/
+    │  └─ demo_*.R
+    │
+    ├─ functions/
+    │  └─ *.R (ML auxiliary functions)
+    │
+    ├─ inputs/
+    │  └─ (user-provided datasets: e.g., EM-DAT and DFO)
+    │
+    ├─ product/
+    │  └─ *.nc   .csv → NetCDF, CSV files
+    │
+    ├─ programs/
+    │  └─ 1_...*.R ... 4_...*.R
+    │
+    ├─ LICENSE
+    └─ README.md
+
+---
+
+## Disclaimer
+
+You are running the scripts/functions, which means you will not blame the author(s) if they break your stuff. The scripts/functions are provided AS IS without warranty of any kind. Author(s) disclaim all implied warranties, including merchantability or fitness for a particular purpose. Author(s) shall not be liable for any damages, losses, or consequences resulting from the use or inability to use this code. The contents do not represent the views of funding agencies, affiliated universities, or the U.S. Government.
