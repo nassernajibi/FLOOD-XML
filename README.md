@@ -20,13 +20,6 @@ FLOOD-XML is an open-source dataset and modeling framework designed in accordanc
     git clone https://github.com/nassernajibi/FLOOD-XML.git
     cd FLOOD-XML
 
-### Install required R packages
-
-    install.packages(c(
-      "readxl","reshape2","hydroGOF","psych","caret",
-      "countrycode","lubridate","xgboost","plyr",
-      "e1071","kernlab","brnn","stringr","ncdf4"
-    ))
 
 ### Run a demo workflow
 
