@@ -89,7 +89,7 @@ A public DOI for the finalized FLOOD-XML dataset will be assigned and added here
 A suggested acknowledgment format is: “This work was conducted as a part of the (Insert your Working Group Title) Working Group supported by the John Wesley Powell Center for Analysis and Synthesis, funded by the U.S. Geological Survey [and other funding sources if appropriate]."
 
 Thanks to EM-DAT, DFO, and World Bank contributors.
-<img src="auxfiles/PowellCenter_emblem.jpg" alt="Powell-Center-logo" width="95%" style="display: block; margin: auto;" />
+<img src="auxfiles/PowellCenter_emblem.jpg" alt="Powell-Center-logo" width="50%" style="display: block; margin: auto;" />
 
 ---
 
