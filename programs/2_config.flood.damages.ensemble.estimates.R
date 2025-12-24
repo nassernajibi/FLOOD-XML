@@ -137,7 +137,7 @@ emdat_vars['Duration'] = duration_events # Duration column
 # deaths
 # area
 # gdp
-dat = data.frame(damage = 1000*emdat_vars$Total.Damages...000.US.., # in USD (raw data is in 1000 USD)
+dat = data.frame(damage = 1000*emdat_vars$Total.Damages...000.US.., # in USD at the time of event (raw data is in 1000 USD)
                  duration = emdat_vars$Duration,  # days
                  deaths = emdat_vars$Total.Deaths, 
                  area = emdat_vars$Dis.Mag.Value, # in km2

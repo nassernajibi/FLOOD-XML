@@ -278,6 +278,47 @@ sv_waterfall(all.shps_emdat)+
   theme(axis.text = element_text(size = 11))
 ##
 
+# Only for LM, BRNN, and SVR panels
+
+library(patchwork)
+library(grid)
+
+selected_models <- c("LM", "BRNN", "SVR")
+key_features    <- c("duration", "deaths", "area")
+
+row_plots <- lapply(selected_models, function(m) {
+  
+  shap_row <- wrap_plots(lapply(key_features, function(f) {
+    sv_dependence(all.shps_emdat[[m]], v = f, color_var = NULL, add_geom = FALSE) +
+      geom_point(size = 4, color = "black") +
+      geom_smooth(method = "loess", color = "darkred",
+                  fill = "salmon", se = TRUE, span = 0.75) +
+      labs(x = f, y = "SHAP value") +
+      theme_minimal(base_size = 26) +
+      theme(legend.position = "none")
+  }), nrow = 1)
+  
+  # ---- Explicit row title (cannot disappear) ----
+  wrap_plots(
+    wrap_elements(
+      textGrob(m, rot = 90,
+               gp = gpar(fontsize = 30, fontface = "bold"))
+    ),
+    shap_row,
+    widths = c(0.06, 1)
+  )
+})
+
+final_panel <- wrap_plots(row_plots, ncol = 1)
+
+ggsave(
+  "./Figures/SHAP_EMDAT_dependence_LM_BRNN_SVR.svg",
+  final_panel,
+  width  = 20,
+  height = 16,
+  dpi    = 300
+)
+
 
 
 
@@ -571,6 +612,8 @@ sv_force(all.shps_dfo,
 sv_waterfall(all.shps_dfo)+
   theme(axis.text = element_text(size = 11))
 ##
+
+
 
 
 ## The End. ##

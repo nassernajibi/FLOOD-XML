@@ -262,6 +262,49 @@ for (model_name in names(all.lime_emdat)) {
 }
 
 ##
+library(patchwork)
+library(grid)
+
+# Keep only these models
+selected_models <- c("LM", "BRNN", "SVR")
+
+all.lime_dfo <- list(
+  LM      = lm_explanation,
+  RF      = rf_explanation,
+  XGBoost = xgb_explanation,
+  SVR     = svr_explanation,
+  BRNN    = brnn_explanation,
+  KNN     = knn_explanation
+)
+
+create_boxplot <- function(data) {
+  ggplot(data, aes(x = reorder(feature, feature_weight, FUN = median), y = feature_weight)) +
+    geom_boxplot(fill = "grey", color = "black",
+                 outlier.color = "black", outlier.shape = 16, width = 0.5) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "orange") +
+    geom_jitter(aes(color = feature),
+                width = 0.2, size = 1.5, alpha = 0.2, show.legend = FALSE) +
+    coord_flip() +
+    labs(x = "Feature", y = "mean (LIME feature weight)") +
+    theme_minimal(base_size = 16)
+}
+
+# Build 3-row panel with guaranteed row titles
+row_plots <- lapply(selected_models, function(m) {
+  wrap_plots(
+    wrap_elements(
+      textGrob(m, rot = 90, gp = gpar(fontsize = 22, fontface = "bold"))
+    ),
+    create_boxplot(all.lime_dfo[[m]]),
+    widths = c(0.07, 1)
+  )
+})
+
+lime_panel <- wrap_plots(row_plots, ncol = 1)
+
+ggsave("./Figures/models.DFO.LIME_analysis_weights_LM_BRNN_SVR.svg",
+       lime_panel, width = 12, height = 12, dpi = 300)
+
 
 
 

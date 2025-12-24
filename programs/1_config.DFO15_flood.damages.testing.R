@@ -8,7 +8,7 @@
 ##----------------------------------------------------------------
 
 #------------------------------------------------
-#--   EMDAT 1985 - 2021 + DFO: 1985 - 2015   -- #
+#--   DFO data: 1985 - 2015   -- #
 #------------------------------------------------
 
 rm(list=ls())
@@ -36,109 +36,6 @@ my.functions <- sapply(files.sources, source)
 
 
 start_time0 <- Sys.time()
-
-##/ data
-# Load EMDAT data (1985-2021)
-emdat_vars = read.csv("./Data/EM_DAT_floods_1985_2021.csv", header = T)
-# Load GDP information
-world_gdp = read.csv("./Data/world_gdp.csv", header = T)
-
-# Find fraction of damages data available per country
-emdat_vars$Country_Re <- countrycode(emdat_vars$ISO, "iso3c", "country.name")
-
-total_events_country <- table(emdat_vars$Country_Re)
-events_country_counts <- cbind(names(total_events_country),as.numeric(total_events_country))
-
-total_events_damages <- table(emdat_vars$Country_Re[!is.na(emdat_vars$Total.Damages...000.US..)])
-damages_country_damages_counts <- cbind(names(total_events_damages),as.numeric(total_events_damages))
-
-corres.events_country_counts <- events_country_counts[events_country_counts[,1]%in%damages_country_damages_counts[,1],]
-
-frac.events_with.damages <- round(as.numeric(damages_country_damages_counts[,2])/as.numeric(corres.events_country_counts[,2]),2)
-country_fraction_with_damages <- data.frame(cbind(corres.events_country_counts[,1],frac.events_with.damages))
-
-all.available.damages <- data.frame(array(0,c(nrow(events_country_counts),2)))
-all.available.damages[,1] <- events_country_counts[,1]
-all.available.damages[events_country_counts[,1]%in%country_fraction_with_damages[,1],2]<- as.numeric(country_fraction_with_damages[,2])
-all.available.damages$X3 <- as.numeric(events_country_counts[,2])
-colnames(all.available.damages) <- c('region','frac_damages','total_events')
-all.available.damages_EMDAT <- all.available.damages
-# country names, fraction [0-1] with damages info, total #floods
-
-# Get GDP for a certain year (e.g., Year 2022)
-countrycode(world_gdp$Country.Code, "iso3c", "country.name")
-x <- world_gdp$X2020
-gdp_2020.country <- data.frame(countrycode(world_gdp$Country.Code, "iso3c", "country.name"),
-                               log10(x))
-gdp_2020.country <- gdp_2020.country[apply(1*is.na(gdp_2020.country),1,sum)==0,]
-colnames(gdp_2020.country) <- c('region','currentUSD')
-
-# Find GDP for each country and year
-nevents = dim(emdat_vars)[1]
-emdat_vars['gdp'] = NA # Create GDP column
-emdat_vars['iso'] = NA # Create ISO column
-for (i in 1:nevents){
-  
-  iso = emdat_vars$ISO[i]
-  yr = emdat_vars$Year[i]
-  ann_gdp = world_gdp[which(world_gdp$Country.Code == iso), yr - 1960 + 5] # GDP data starts from 1960
-  
-  # If no data found, assign NA
-  if (length(ann_gdp) < 1){
-    ann_gdp <- iso <- NA
-  }
-  
-  emdat_vars['gdp'][i,1] = ann_gdp # Assign GDP
-  emdat_vars['iso'][i,1] = iso # Assign ISO
-}
-# Add Duration for each event based on the start and end dates
-start_dates <- as.Date(paste(emdat_vars$Start.Year,emdat_vars$Start.Month,emdat_vars$Start.Day,sep='-'))
-end_dates <- as.Date(paste(emdat_vars$End.Year,emdat_vars$End.Month,emdat_vars$End.Day,sep='-'))
-duration_events <- as.numeric(end_dates-start_dates+1) # in days
-emdat_vars['Duration'] = duration_events # Duration column
-
-# available damage data across all countries
-sum(!is.na(emdat_vars$Total.Damages...000.US..))/sum(is.na(emdat_vars$Total.Damages...000.US..))*100
-# 48.99722%
-
-# Create dataframe:
-# damage
-# duration
-# deaths
-# area
-# gdp
-# iso
-dat_full = data.frame(damage = 1000*emdat_vars$Total.Damages...000.US.., # in USD at the time of event (raw data comes in 1000 USD)
-                      duration = emdat_vars$Duration,  # days
-                      deaths = emdat_vars$Total.Deaths, 
-                      area = emdat_vars$Dis.Mag.Value, # in km2
-                      gdp = emdat_vars$gdp,
-                      iso = emdat_vars$iso)
-idx.holder <- seq(1,nrow(dat_full))
-#> 4829 events
-# Remove events with any missing data
-dummy = apply(dat_full[,-ncol(dat_full)],1,mean,na.rm=F)
-df = dat_full[which(!is.na(dummy)),]
-real_nevents = dim(df)[1] # Number of events
-idx.holder <- idx.holder[which(!is.na(dummy))]
-# == 653 events
-
-set.seed(1)
-shuffled_indices <- sample(1:real_nevents)
-# Apply the shuffled order to the data (randomizing)
-df_shuffled <- df[shuffled_indices, ]
-
-# Convert data into log scale
-df_shuffled.log <- log(df_shuffled[,-ncol(df_shuffled)]) # remove ISO for country
-
-
-# # log(damages/gdp) -- better
-df_shuffled.log$damage <- log(df_shuffled$damage/df_shuffled$gdp)
-df_shuffled.log$gdp <- NULL # remove gdp
-
-df_shuffled.EMDAT <- df_shuffled
-df_shuffled.log.EMDAT <- df_shuffled.log
-
 
 ##/ data
 # Load DFO data (1985-2015)
@@ -231,7 +128,7 @@ dat_full = data.frame(damage = as.numeric(as.matrix(dfo15_vars$Damages)),
 dim(dat_full)[1]-sum(sapply(1:dim(dat_full)[1],function(x){return(sum(is.na(dat_full[x,])))})==ncol(dat_full))
 #> 4311 events
 # Remove events with any missing data
-dummy = apply(dat_full[,-ncol(dat_full)], 1, mean, na.rm=F)
+dummy = apply(dat_full[,-ncol(dat_full)],1,mean,na.rm=F)
 df = dat_full[which(!is.na(dummy)),]
 df <- df [!df$damage==0,] # eliminating rows with zero damages
 real_nevents = dim(df)[1] # Number of events
@@ -242,39 +139,16 @@ df$deaths[df$deaths==0] <- 1 # making 0 death to 1 to avoid Inf after getting it
 
 set.seed(1)
 shuffled_indices <- sample(1:real_nevents)
-# Apply the shuffled order to the data (randomizing)
+# Apply the shuffled order to the data
 df_shuffled <- df[shuffled_indices, ]
+
 
 # Convert data into log scale
 df_shuffled.log <- log(df_shuffled[,-ncol(df_shuffled)]) # remove ISO for country
 
-# log(damages)/log(gdp) #-- not recommended
-# df_shuffled.log$damage <- df_shuffled.log$damage/df_shuffled.log$gdp
-# df_shuffled.log <- df_shuffled.log[,-ncol(df_shuffled.log)]
-
 # # log(damages/gdp) #-- better
 df_shuffled.log$damage <- log(df_shuffled$damage/df_shuffled$gdp)
-df_shuffled.log <- df_shuffled.log[,-ncol(df_shuffled.log)] # remove gdp
-
-df_shuffled.DFO <- df_shuffled
-df_shuffled.log.DFO <- df_shuffled.log
-
-
-#-- concatenate the two datasets --#
-df_shuffled.EMDAT.DFO <- rbind(df_shuffled.EMDAT,df_shuffled.DFO)
-df_shuffled.log.EMDAT.DFO <- rbind(df_shuffled.log.EMDAT,df_shuffled.log.DFO)
-
-real_nevents = dim(df_shuffled.log.EMDAT.DFO)[1] # Number of events (combined)
-# == 1535 events
- 
-set.seed(1)
-shuffled_indices <- sample(1:real_nevents)
-# Apply the shuffled order to the data
-df_shuffled2.EMDAT.DFO <- df_shuffled.EMDAT.DFO[shuffled_indices, ]
-df_shuffled2.log.EMDAT.DFO <- df_shuffled.log.EMDAT.DFO[shuffled_indices, ]
-
-df_shuffled <- df_shuffled2.EMDAT.DFO
-df_shuffled.log <- df_shuffled2.log.EMDAT.DFO # combined two datasets
+df_shuffled.log$gdp <- NULL # remove gdp
 
 
 ### -------------------------------------------------------------
@@ -627,25 +501,25 @@ lst.knn.stats[[2]] <- list(outofsample_test.predict,
 
 
 ### --------------------- save input data ----------------------
-lst_EMDATplusDFO15 <- list(df_shuffled,df_shuffled.log)
-names(lst_EMDATplusDFO15) <- c('df_shuffled','df_shuffled.log')
-saveRDS(lst_EMDATplusDFO15,
-        './Data/processed.data.files/lst_EMDATplusDFO15.data_training.testing.rds')
+lst_DFO15 <- list(df_shuffled,df_shuffled.log)
+names(lst_DFO15) <- c('df_shuffled','df_shuffled.log')
+saveRDS(lst_DFO15,
+        './Data/processed.data.files/lst_DFO15.data_training.testing.rds')
 
 ### --------------------------save metrics-----------------------
 ### -------------------------------------------------------------
 
-lst.EMDAT.plus.DFO15.evaluations <- list(lst.lm.stats,
+lst.DFO15.evaluations <- list(lst.lm.stats,
                               lst.rf.stats,
                               lst.xgb.stats,
                               lst.svr.stats,
                               lst.brnn.stats,
                               lst.knn.stats)
-names(lst.EMDAT.plus.DFO15.evaluations) <- c('lst.lm.stats','lst.rf.stats',
+names(lst.DFO15.evaluations) <- c('lst.lm.stats','lst.rf.stats',
                                   'lst.xgb.stats','lst.svr.stats',
                                   'lst.brnn.stats','lst.knn.stats')
-saveRDS(lst.EMDAT.plus.DFO15.evaluations,
-        './Data/output.evaluations/lst.EMDAT.plus.DFO15.evaluations.rds')
+saveRDS(lst.DFO15.evaluations,
+        './Data/output.evaluations/lst.DFO15.evaluations.rds')
 
 end_time0 <- Sys.time(); run.time.total0 <- end_time0 - start_time0
 print(start_time0);print(end_time0)
