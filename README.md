@@ -1,9 +1,3 @@
-![GitHub](https://img.shields.io/github/license/nassernajibi/FLOOD-XML)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/nassernajibi/FLOOD-XML)
-![GitHub repo size](https://img.shields.io/github/repo-size/nassernajibi/FLOOD-XML)
-![GitHub language count](https://img.shields.io/github/languages/count/nassernajibi/FLOOD-XML)
-![GitHub last commit](https://img.shields.io/github/last-commit/nassernajibi/FLOOD-XML)
-
 # FLOOD-XML (Flood LOss and Observed Damage using eXplainable Machine Learning)
 ### A Multi-Model Ensemble Dataset of Global Flood Damages Since the 1980s Based on Explainable Machine Learning Frameworks ###
 
