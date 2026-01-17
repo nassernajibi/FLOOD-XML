@@ -1,7 +1,9 @@
 # FLOOD-XML (Flood LOss and Observed Damage using eXplainable Machine Learning)
 
 [![Visitor Count](https://visitor-badge.laobi.icu/badge?page_id=nassernajibi.FLOOD-XML)](https://github.com/nassernajibi/FLOOD-XML)
-[![GitHub stars](https://img.shields.io/github/stars/nassernajibi/FLOOD-XML)](https://github.com/nassernajibi/FLOOD-XML)
+[![GitHub stars](https://img.shields.io/github/stars/nassernajibi/FLOOD-XML?style=social)](https://github.com/nassernajibi/FLOOD-XML)
+[![GitHub forks](https://img.shields.io/github/forks/nassernajibi/FLOOD-XML)](https://github.com/nassernajibi/FLOOD-XML/network/members)
+[![GitHub last commit](https://img.shields.io/github/last-commit/nassernajibi/FLOOD-XML/main)](https://github.com/nassernajibi/FLOOD-XML/commits/main)
 
 ## A Multi-Model Ensemble Dataset of Global Flood Damages Since the 1980s Based on Explainable Machine Learning Frameworks ###
 
