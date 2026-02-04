@@ -35,13 +35,10 @@ The Mapper enables users to dynamically explore global, event-level flood damage
     setwd("path/to/FLOOD-XML")
     ./programs
 
----
-
 ## Workflow Description
 
 
-
-## Repository Structure
+### Repository Structure
 
     FLOOD-XML/
     ├─ auxfiles/
@@ -94,7 +91,7 @@ Step-by-step workflows and reproducible analyses.
 
 ---
 
-## Code Availability
+## Code/Demo Availability
 
 ### ./programs
 Full end-to-end workflow scripts (training, prediction, evaluation)
@@ -106,7 +103,6 @@ Reusable R functions for preprocessing, feature engineering, ML model training, 
 ### ./demo
 (ongoing)
 
----
 
 ## Data Availability
 
@@ -134,15 +130,12 @@ BibTeX:
 	note         = {Version 1.0}
     }
 
----
 
 ## License
 
 This project is released under the GNU GPL-3.0 License.  
 See the LICENSE file for full terms.
 
-
----
 
 
 ## Acknowledgments
@@ -153,7 +146,6 @@ Any opinions, findings, and conclusions or recommendations expressed in this mat
 
 <img src="auxfiles/PowellCenter_emblem.jpg" alt="Powell-Center-logo" width="25%" style="display: block; margin: auto;" />
 
----
 
 
 ## Disclaimer
