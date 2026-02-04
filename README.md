@@ -14,15 +14,11 @@
 
 FLOOD-XML is an open-source dataset and AI/ML-based modeling framework designed in accordance with FAIR (Findable, Accessible, Interoperable, Reusable) and CARE (Collective Benefit, Authority to Control, Responsibility, Ethics) principles. It generates global, event-level flood damage estimates using explainable machine learning (XML) models. The workflow harmonizes multi-decade flood archives (DFO: https://floodobservatory.colorado.edu; EM-DAT: https://www.emdat.be) with event attributes, including duration, affected area, deaths, centroid location, GDP, and the main reported cause. Using these features, FLOOD-XML trains a six-model ensemble (MLR/LM, RF, XGB, SVR, BRNN, k-NN) to produce consistent economic loss estimates (USD) for thousands of events worldwide from 1985 to the present.
 
-### 🌍 FLOOD-XML Mapper
+### 🌊 FLOOD-XML Mapper
 FLOOD-XML Mapper is an interactive web-based visualization and exploration portal developed to support transparent access, quality control, and stakeholder-oriented use of the FLOOD-XML dataset.
 The Mapper enables users to dynamically explore global, event-level flood damage estimates in space and time, query individual flood events, and visualize associated attributes such as economic losses (across different ML models and multi-model median), duration, affected area, fatalities, reported causes, and time series of events.
 
-<h2>
-  <a href="https://nassernajibi.github.io/FLOOD-XML-Mapper" target="_blank" rel="noopener noreferrer">
-    Launch FLOOD-XML Portal →
-  </a>
-</h2>
+🌍 Launch FLOOD-XML Portal → https://nassernajibi.github.io/FLOOD-XML-Mapper
 
 ---
 
@@ -94,6 +90,7 @@ Reusable R functions for preprocessing, feature engineering, ML model training, 
 This repository includes the processed FLOOD-XML outputs (CSV and NetCDF).
 Users are responsible for complying with the licensing and use restrictions of the underlying raw data sources (EM-DAT, DFO, World Bank GDP).
 A public DOI for the finalized FLOOD-XML dataset in HydroShare is assigned and added here:
+
 FLOOD-XML v.1.0 (Flood LOss and Observed Damage using eXplainable Machine Learning), 2026. HydroShare, https://doi.org/10.4211/hs.43734306345c41358617d90800d12819
 
 ---
