@@ -114,7 +114,7 @@ A public DOI for the finalized FLOOD-XML dataset in HydroShare is assigned and a
 
 ## Citation
 
-Najibi, N., Hwang, J., Wang, D., Magers, B., Sankarasubramanian, A., Archfield, S., & Devineni, N. (2026). FLOOD-XML: A multi-model ensemble dataset of global flood damages since the 1980s based on explainable machine learning frameworks (Manuscript submitted for publication). Nature Scientific Data.
+Najibi, N., Hwang, J., Wang, D., Magers, B., Sankarasubramanian, A., Archfield, S., & Devineni, N. (2026). FLOOD-XML: A multi-model ensemble dataset of global flood damages based on explainable machine learning frameworks (Manuscript submitted for publication). Nature Scientific Data.
 
 FLOOD-XML: Flood LOss and Observed Damage using eXplainable Machine Learning. GitHub Repository. https://github.com/nassernajibi/FLOOD-XML
 
