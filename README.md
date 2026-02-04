@@ -18,7 +18,11 @@ FLOOD-XML is an open-source dataset and AI/ML-based modeling framework designed 
 FLOOD-XML Mapper is an interactive web-based visualization and exploration portal developed to support transparent access, quality control, and stakeholder-oriented use of the FLOOD-XML dataset.
 The Mapper enables users to dynamically explore global, event-level flood damage estimates in space and time, query individual flood events, and visualize associated attributes such as economic losses (across different ML models and multi-model median), duration, affected area, fatalities, reported causes, and time series of events.
 
-## [Launch FLOOD-XML Portal →](https://nassernajibi.github.io/FLOOD-XML-Mapper)
+<h2>
+  <a href="https://nassernajibi.github.io/FLOOD-XML-Mapper" target="_blank" rel="noopener noreferrer">
+    Launch FLOOD-XML Portal →
+  </a>
+</h2>
 
 ---
 
