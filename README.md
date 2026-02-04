@@ -108,7 +108,7 @@ Reusable R functions for preprocessing, feature engineering, ML model training, 
 
 This repository includes the processed FLOOD-XML outputs (CSV and NetCDF).
 Users are responsible for complying with the licensing and use restrictions of the underlying raw data sources (EM-DAT, DFO, World Bank GDP).
-A public DOI for the finalized FLOOD-XML dataset in HydroShare is assigned and added here (see Citation)
+A public DOI for the finalized FLOOD-XML dataset in HydroShare is assigned and added here (see Citation below)
 
 ---
 
@@ -116,9 +116,9 @@ A public DOI for the finalized FLOOD-XML dataset in HydroShare is assigned and a
 
 Najibi, N., Hwang, J., Wang, D., Magers, B., Sankarasubramanian, A., Archfield, S., & Devineni, N. (2026). FLOOD-XML: A multi-model ensemble dataset of global flood damages since the 1980s based on explainable machine learning frameworks (Manuscript submitted for publication). Nature Scientific Data.
 
-FLOOD-XML: Flood LOss and Observed Damage using eXplainable Machine Learning.GitHub Repository. https://github.com/nassernajibi/FLOOD-XML
+FLOOD-XML: Flood LOss and Observed Damage using eXplainable Machine Learning. GitHub Repository. https://github.com/nassernajibi/FLOOD-XML
 
-FLOOD-XML v.1.0 (Flood LOss and Observed Damage using eXplainable Machine Learning), HydroShare, https://doi.org/10.4211/hs.43734306345c41358617d90800d12819
+Najibi, N. (2026). FLOOD-XML v.1.0 (Flood LOss and Observed Damage using eXplainable Machine Learning). HydroShare, https://doi.org/10.4211/hs.43734306345c41358617d90800d12819
 
 BibTeX:
 
