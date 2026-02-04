@@ -39,6 +39,29 @@ The Mapper enables users to dynamically explore global, event-level flood damage
 
 ## Workflow Description
 
+
+
+## Repository Structure
+
+    FLOOD-XML/
+    ├─ auxfiles/
+    │  └─ flood-xml-logo.jpg
+    │
+    ├─ functions/
+    │  └─ *.R (ML auxiliary functions)
+    │
+    ├─ inputs/
+    │  └─ (user-provided datasets: e.g., EM-DAT and DFO)
+    │
+    ├─ product/
+    │  └─ *.nc   .csv → NetCDF, CSV files
+    │
+    ├─ programs/
+    │  └─ 1_...*.R ... 4_...*.R
+    │
+    ├─ LICENSE
+    └─ README.md
+	
 ### 1. Preprocessing (./auxfiles)
 Processes EM-DAT and DFO archives, harmonizes features, computes durations, merges GDP, and generates ML-ready training arrays.
 
@@ -80,7 +103,7 @@ Scripts for producing final FLOOD-XML datasets (CSV + NetCDF)
 ### ./functions
 Reusable R functions for preprocessing, feature engineering, ML model training, ensemble prediction, and NetCDF generation
 
-### demo/
+### ./demo
 (ongoing)
 
 ---
@@ -95,21 +118,7 @@ FLOOD-XML v.1.0 (Flood LOss and Observed Damage using eXplainable Machine Learni
 
 ---
 
-## Acknowledgments
-
-This work was supported by the US Department of the Interior, U.S. Geological Survey (USGS) grant number G25AC00204-00.
-This work was conducted as a part of the “Global Flood Impacts” Working Group, supported by the John Wesley Powell Center for Analysis and Synthesis, funded by the USGS.
-Any opinions, findings, and conclusions or recommendations expressed in this material do not necessarily reflect the views of the funding agency.
-
-<img src="auxfiles/PowellCenter_emblem.jpg" alt="Powell-Center-logo" width="25%" style="display: block; margin: auto;" />
-
-
-
----
-
 ## Citation
-
-Please cite FLOOD-XML as:
 
 Najibi, N., Hwang, J., Wang, D., Magers, B., Sankarasubramanian, A., Archfield, S., & Devineni, N. (2026). FLOOD-XML: A multi-model ensemble dataset of global flood damages since the 1980s based on explainable machine learning frameworks (Manuscript submitted for publication). Nature Scientific Data.
 
@@ -132,30 +141,20 @@ BibTeX:
 This project is released under the GNU GPL-3.0 License.  
 See the LICENSE file for full terms.
 
----
-
-## Repository Structure
-
-    FLOOD-XML/
-    ├─ auxfiles/
-    │  └─ flood-xml-logo.jpg
-    │
-    ├─ functions/
-    │  └─ *.R (ML auxiliary functions)
-    │
-    ├─ inputs/
-    │  └─ (user-provided datasets: e.g., EM-DAT and DFO)
-    │
-    ├─ product/
-    │  └─ *.nc   .csv → NetCDF, CSV files
-    │
-    ├─ programs/
-    │  └─ 1_...*.R ... 4_...*.R
-    │
-    ├─ LICENSE
-    └─ README.md
 
 ---
+
+
+## Acknowledgments
+
+This work was supported by the US Department of the Interior, U.S. Geological Survey (USGS) grant number G25AC00204-00.
+This work was conducted as a part of the “Global Flood Impacts” Working Group, supported by the John Wesley Powell Center for Analysis and Synthesis, funded by the USGS.
+Any opinions, findings, and conclusions or recommendations expressed in this material do not necessarily reflect the views of the funding agency.
+
+<img src="auxfiles/PowellCenter_emblem.jpg" alt="Powell-Center-logo" width="25%" style="display: block; margin: auto;" />
+
+---
+
 
 ## Disclaimer
 
