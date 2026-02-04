@@ -73,15 +73,15 @@ Step-by-step workflows and reproducible analyses.
 
 ## Code Availability
 
-### programs/
-Full end-to-end workflow scripts (training, prediction, evaluation).
-Scripts for producing final FLOOD-XML datasets (CSV + NetCDF).
+### ./programs
+Full end-to-end workflow scripts (training, prediction, evaluation)
+Scripts for producing final FLOOD-XML datasets (CSV + NetCDF)
 
-### functions/
-Reusable R functions for preprocessing, feature engineering, ML model training, ensemble prediction, and NetCDF generation.
+### ./functions
+Reusable R functions for preprocessing, feature engineering, ML model training, ensemble prediction, and NetCDF generation
 
 ### demo/
-(ongoing).
+(ongoing)
 
 ---
 
