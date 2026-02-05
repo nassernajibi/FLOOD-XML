@@ -91,7 +91,7 @@ Step-by-step workflows and reproducible analyses.
 
 ---
 
-## Code/Demo Availability
+## 🧠 Code/Demo Availability
 
 ### ./programs
 Full end-to-end workflow scripts (training, prediction, evaluation)
