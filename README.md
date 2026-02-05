@@ -24,7 +24,7 @@ The Mapper enables users to dynamically explore global, event-level flood damage
 
 ## Getting Started
 
-### Clone the repository
+### 📦 Clone the repository
 
     git clone https://github.com/nassernajibi/FLOOD-XML.git
     cd FLOOD-XML
@@ -38,7 +38,7 @@ The Mapper enables users to dynamically explore global, event-level flood damage
 ## Workflow Description
 
 
-### Repository Structure
+### 📁 Repository Structure
 
     FLOOD-XML/
     ├─ auxfiles/
@@ -112,7 +112,7 @@ A public DOI for the finalized FLOOD-XML dataset in HydroShare is assigned and a
 
 ---
 
-## Citation
+## 📚 Citation
 
 Najibi, N., Hwang, J., Wang, D., Magers, B., Sankarasubramanian, A., Archfield, S., & Devineni, N. (2026). FLOOD-XML: A multi-model ensemble dataset of global flood damages based on explainable machine learning frameworks (Manuscript submitted for publication). Nature Scientific Data.
 
@@ -138,7 +138,7 @@ See the LICENSE file for full terms.
 
 
 
-## Acknowledgments
+## 🎯 Acknowledgments
 
 This work was supported by the US Department of the Interior, U.S. Geological Survey (USGS) grant number G25AC00204-00.
 This work was conducted as a part of the “Global Flood Impacts” Working Group, supported by the John Wesley Powell Center for Analysis and Synthesis, funded by the USGS.
