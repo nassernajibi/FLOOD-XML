@@ -2,7 +2,7 @@
 
 [![Visitor Count](https://visitor-badge.laobi.icu/badge?page_id=nassernajibi.FLOOD-XML)](https://github.com/nassernajibi/FLOOD-XML)
 
-## A Multi-Model Ensemble Dataset of Global Flood Damages Since the 1980s Based on Explainable Machine Learning Frameworks ###
+## A Multi-Model Ensemble Dataset of Global Flood Damages Based on Explainable Machine Learning Frameworks ###
 
 <img src="auxfiles/logo_GitHub.jpg" alt="FLOOD-XML-logo" width="95%" style="display: block; margin: auto;" />
 
@@ -63,10 +63,10 @@ The Mapper enables users to dynamically explore global, event-level flood damage
 Processes EM-DAT and DFO archives, harmonizes features, computes durations, merges GDP, and generates ML-ready training arrays.
 
 ### 2. ML Model Training (./programs/, ./functions)
-Trains six ML models (LM, RF, XGB, SVR, BRNN, k-NN) on EM-DAT data (or DFO'15 and/or combined datasets) based on the flood damage scaling functions. Outputs predicted economic losses (USD) per event for DFO'21 (and EM-DAT).
+Trains six ML models (LM, RF, XGB, SVR, BRNN, k-NN) on EM-DAT data (or DFO'21 and/or combined datasets) based on the flood damage scaling functions. Outputs predicted economic losses (USD) per event for DFO'21 (and EM-DAT).
 
 ### 3. Explainability Analysis (./programs)
-SHAP, LIME, variable importance, partial dependence diagnostics, model comparison metrics, and optional ANOVA reasoning.
+SHAP, LIME, model comparison metrics (PRESS, AIC, BIC), and optional ANOVA reasoning.
 
 ### 4. Product Generation (./product)
 Generates FLOOD-XML CSV files and NetCDF files including:
@@ -98,7 +98,7 @@ Full end-to-end workflow scripts (training, prediction, evaluation)
 Scripts for producing final FLOOD-XML datasets (CSV + NetCDF)
 
 ### ./functions
-Reusable R functions for preprocessing, feature engineering, ML model training, ensemble prediction, and NetCDF generation
+Reusable R functions for preprocessing, data organizing, ML model training, ensemble prediction, and NetCDF generation
 
 ### ./demo
 (ongoing)
@@ -114,7 +114,7 @@ A public DOI for the finalized FLOOD-XML dataset in HydroShare is assigned and a
 
 ## 📚 Citation
 
-Najibi, N., Hwang, J., Wang, D., Magers, B., Sankarasubramanian, A., Archfield, S., & Devineni, N. (2026). FLOOD-XML: A multi-model ensemble dataset of global flood damages based on explainable machine learning frameworks (Manuscript submitted for publication). Nature Scientific Data.
+Najibi, N., Hwang, J., Wang, D., Magers, B., Sankarasubramanian, A., Archfield, S., & Devineni, N. (2026). FLOOD-XML: A multi-model ensemble dataset of global flood damages based on explainable machine learning frameworks (submitted). Nature Scientific Data.
 
 FLOOD-XML: Flood LOss and Observed Damage using eXplainable Machine Learning. GitHub Repository. https://github.com/nassernajibi/FLOOD-XML
 
